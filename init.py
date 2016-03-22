@@ -6,8 +6,9 @@ import json
 resp = requests.get(url,
                     headers={'Accept':'application/orcid+json'})
 
-print json.dumps(resp.json(),
+print(json.dumps(resp.json(),
                  sort_keys=True,
-                 indent=4, separators=(',', ': '))
+                 indent=4, separators=(',', ': ')))
+
 
 
