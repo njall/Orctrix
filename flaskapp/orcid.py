@@ -29,9 +29,19 @@ def get_profile(orcid_id):
 
     # TODO Add information
     profile = {}
-    profile['given_names'] = raw_json.get("orcid-profile").get("orcid-bio").get("personal-details").get("given-names").get("value")
-    profile['family_name'] = raw_json.get("orcid-profile").get("orcid-bio").get("personal-details").get("family-name").get("value")
-    profile['email'] = raw_json.get("orcid-profile").get("orcid-bio").get("contact-details").get("email")[0].get("value").lower().strip()
+    for name in ('credit_name', 'given_names', 'family_name'):
+        try:
+            profile[name] = raw_json.get("orcid-profile").get("orcid-bio").get("personal-details").get(name.replace('_', '-')).get("value")
+        except:
+            profile[name] = None
+    if profile['credit_name']:
+        profile['name'] = profile['credit_name']
+    else:
+        profile['name'] = profile['given_names'] + ' ' + profile['family_name']
+    try:
+        profile['email'] = raw_json.get("orcid-profile").get("orcid-bio").get("contact-details").get("email")[0].get("value").lower().strip()
+    except:
+        profile['email']
     profile['affiliation'] = get_current_affiliation(orcid_id)
     try:
         profile['bio'] = raw_json.get('orcid-profile').get('orcid-bio').get('biography').get('value')
