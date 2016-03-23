@@ -1,12 +1,13 @@
 user:
-    name: Melodee Helene Beals
-    affiliation: Loughborough University
-    orcid: 
-    gravatarhash: 82b4d22865fcd47198ac2bd283b3f08e
-        
-        
-        
-        
+    0000-0002-2907-3313:
+        name: Melodee Helene Beals
+        affiliation: Loughborough University
+        gravatarhash: 82b4d22865fcd47198ac2bd283b3f08e
+    0000-0002-8112-8449:
+        name: Jens H. Nielsen
+        affiliation: UCL
+        gravatarhash: 40f65b0cb36ed0cfa1a6ce6eb9216eb3
+
 articles:
     1:
         title: The Role of the Sydney Gazette in the Creation of Australia in the Scottish Public Sphere
