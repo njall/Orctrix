@@ -11,9 +11,9 @@ def index():
     with open("config.yml", 'r') as ymlfile:
         cfg = yaml.load(ymlfile)
 
-    name = cfg['user']['name']
-    affiliation = cfg['user']['affiliation']
-    gravatarhash = cfg['user']['gravatarhash']
+    name = cfg['user']['0000-0002-2907-3313']['name']
+    affiliation = cfg['user']['0000-0002-2907-3313']['affiliation']
+    gravatarhash = cfg['user']['0000-0002-2907-3313']['gravatarhash']
     articles = cfg['articles']
     for article in articles:
         if 'doi' in articles[article].keys():
@@ -23,7 +23,7 @@ def index():
             articles[article]['doiurl'] = None
     return render_template('sample.html',
                            profile_data={
-                           "user": cfg['user'],
+                           "user": cfg['user']['0000-0002-2907-3313'],
                            "name": name,
                            "affiliation": affiliation,
                            "gravatarhash": gravatarhash},
@@ -34,6 +34,16 @@ def storify(orcid_id):
     with open("config.yml", 'r') as ymlfile:
         cfg = yaml.load(ymlfile)
     orcid_json = orcid.get_json(orcid_id)
+    works = orcid.get_works(orcid_id)
+    print(works)
+    profile_data = update_userinfo(orcid_id, orcid_json, cfg)
+
+    return render_template('sample.html',
+                           profile_data=profile_data,
+                           articles={})
+
+
+def update_userinfo(orcid_id, orcid_json, cfg):
     try:
         localuserinformation = cfg['user'][orcid_id]
     except KeyError:
@@ -42,9 +52,7 @@ def storify(orcid_id):
     if localuserinformation:
         profile_data['affiliation'] = localuserinformation['affiliation']
         profile_data['gravatarhash'] = localuserinformation['gravatarhash']
-    return render_template('sample.html',
-                           profile_data=profile_data,
-                           articles={})
+    return profile_data
 
 if __name__ == '__main__':
     app.run(debug=True)
