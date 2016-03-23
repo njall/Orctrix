@@ -31,9 +31,9 @@ def get_profile(orcid_id):
     profile = {}
     profile['given_name'] = raw_json.get("orcid-profile").get("orcid-bio").get("personal-details").get("given-names").get("value")
     profile['family_name'] = raw_json.get("orcid-profile").get("orcid-bio").get("personal-details").get("family-name").get("value")
-    profile['email'] = auth_raw.get("orcid-profile").get("orcid-bio").get("contact-details").get("email")[0].get("value").lower().strip()
+    profile['email'] = raw_json.get("orcid-profile").get("orcid-bio").get("contact-details").get("email")[0].get("value").lower().strip()
     profile['affiliation'] = get_current_affiliation(orcid_id)
-    profile['bio'] = auth_raw.get('orcid-profile').get('orcid-bio').get('biography').get('value')
+    profile['bio'] = raw_json.get('orcid-profile').get('orcid-bio').get('biography').get('value')
     profile['gravatarhash'] = hashlib.md5(profile['email'].encode('utf-8')).hexdigest()
 
     return profile
