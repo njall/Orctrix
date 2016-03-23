@@ -54,7 +54,7 @@ $ python mainapp.py
 
 - [Benjamin Laken](http://localhost:5000/0000-0003-2021-6258)
 - [Heather Ford](http://localhost:5000/0000-0002-3500-9772)
-- [Jens Nielson](http://localhost:5000/0000-0002-8112-8449)
+- [Jens Nielsen](http://localhost:5000/0000-0002-8112-8449)
 - [Melodee Beals](http://localhost:5000/0000-0002-2907-3313)
 - [Niall Beard](http://localhost:5000/0000-0002-2627-0231)
 - [Olivia Guest](http://localhost:5000/0000-0002-1891-0972)
