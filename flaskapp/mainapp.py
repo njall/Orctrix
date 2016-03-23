@@ -2,6 +2,7 @@ from flask import Flask, render_template, send_from_directory
 import yaml
 import os
 import orcid
+import re
 
 app = Flask(__name__)
 
@@ -31,6 +32,12 @@ def index():
 
 @app.route('/<orcid_id>')
 def storify(orcid_id):
+    if len(orcid_id) is not 23:
+      return render_template('sample.html',
+                               feedback={
+                               "title": "Sorry page can't be created:",
+                               "details": 'ORCID provided is not correct length'}) 
+
     with open("config.yml", 'r') as ymlfile:
         cfg = yaml.load(ymlfile)
     orcid_json = orcid.get_profile(orcid_id)

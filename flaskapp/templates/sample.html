@@ -16,7 +16,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1 class="text-center">{{ profile_data.given_names }} {{ profile_data.family_name }}</h1>
+                        <h1 class="text-center">{{ profile_data.name }}</h1>
                         <img src="http://www.gravatar.com/avatar/{{ profile_data.gravatarhash }}" class="img-responsive img-circle center-block" width="120px">
                         <h3 class="text-center">{{ profile_data.affiliation }}</h3>
                     </div>
@@ -29,7 +29,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <h2 class="text-center">{{ article['doi'] }}</h2>
+                            <h2 class="text-center">{{ article['title'] }}</h2>
                         </div>
                     </div>
                 </div>
@@ -41,11 +41,10 @@
                             <img src="{{ article["image"] }}" class="img-responsive img-circle center-block" width="120px">
                         </div>
                         <div class="col-md-8">
-                            <p class="lead text-default">{{ article['summary'] }}</p>
-                            <p class="lead text-default">This article has been cited by...</p>
+                            <p class="lead text-default">{{ article['description'] }}</p>
                         </div>
                         <div class="col-md-2">
-                            <div data-badge-type="medium-donut" data-doi="{{ article['url'] }}" data-hide-no-mentions="true" class="altmetric-embed text-center img-responsive"></div>
+                            <div data-badge-type="medium-donut" data-doi="https://dx.doi.org/{{ article['doi'] }}" data-hide-no-mentions="true" class="altmetric-embed text-center img-responsive"></div>
                         </div>
                     </div>
                 </div>
@@ -58,3 +57,4 @@
 </body>
 
 </html>
+
