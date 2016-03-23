@@ -49,41 +49,47 @@ def get_profile(orcid_id):
         profile['bio'] = raw_json.get('orcid-profile').get('orcid-bio').get('biography').get('value')
     except:
         profile['bio'] = None
-    profile['gravatarhash'] = hashlib.md5(profile['email'].encode('utf-8')).hexdigest()
-
+    if profile['email']:
+        profile['gravatarhash'] = hashlib.md5(profile['email'].encode('utf-8')).hexdigest()
+    else:
+        profile['gravatarhash'] = None
     return profile
 
 
 def get_works(orcid_id):
     """ Return dictionary containing work of person with ORCID id. Dict indexed by DOI of works """
     raw_json = _get_raw_json(orcid_id, "/orcid-works")
-    works = raw_json['orcid-profile']['orcid-activities']['orcid-works']['orcid-work']
+    try:
+        works = raw_json['orcid-profile']['orcid-activities']['orcid-works']['orcid-work']
+    except:
+        works = None
     d = []
     # TODO Improve the box_type selection
     box_type = "full"
-    for item in works:
-        if box_type == "full":
-            box_type = "images"
-        elif box_type == "images":
-            box_type = "donut"
-        else:
-            box_type = "full"
-
-        doi, tmp_d = work_item(item)
-        if tmp_d:
-            tmp_d["doi"] = doi
-            tmp_d["image"] = None
-            # XXX Need to parse some information
-            if tmp_d.get("cite") and tmp_d.get("cite").get("work-citation-type") == "BIBTEX":
-                m = re.search('title\s?=\s?{(.+)}', tmp_d.get("cite").get("citation"))
-                tmp_d["title"] = m.group(1)
+    if works:
+        for item in works:
+            if box_type == "full":
+                box_type = "images"
+            elif box_type == "images":
+                box_type = "donut"
             else:
-                continue
+                box_type = "full"
 
-            tmp_d["box_type"] = box_type
-            print(tmp_d)
+            doi, tmp_d = work_item(item)
+            if tmp_d:
+                tmp_d["doi"] = doi
+                tmp_d["image"] = None
+                # XXX Need to parse some information
+                if tmp_d.get("cite") and tmp_d.get("cite").get("work-citation-type") == "BIBTEX":
+                    m = re.search('title\s?=\s?{(.+)}', tmp_d.get("cite").get("citation"))
+                    tmp_d["title"] = m.group(1)
+                else:
+                    continue
 
-            d.append(tmp_d)
+                tmp_d["box_type"] = box_type
+                print(tmp_d)
+
+                d.append(tmp_d)
     return d
 
 def get_current_affiliation(orcid_id):
