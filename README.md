@@ -8,9 +8,7 @@ Orctrix allows researchers to create rich narratives of their career and researc
 
 ### Benefits
 
-+ Highlight aspects of work not captured by a 'traditional' CV
-+ Easier to consume for employers
-+ Easier to consume for funders
+By wrapping your citations in narrative text, you can explore aspects of your work&mdash;its origins, aims, and pathways&mdash;that are not captured by traditional CVs. Moreover, it provides potentional collaborators, funders and employers with an intuitive and visually appealing introduction to you and your work.
 
 ## Requirements
 
