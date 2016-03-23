@@ -27,7 +27,7 @@ def get_json(orcid_id):
     raw_json = _get_raw_json(orcid_id)
 
     # TODO Add information
-    json = {
+    myjson = {
             "given_names":
             raw_json.get("orcid-profile").get("orcid-bio").get("personal-details").get("given-names").get("value"),
             "family_name":
@@ -39,19 +39,19 @@ def get_json(orcid_id):
             "gravatarhash": None,
             }
 
-    return json
+    return myjson
+
 
 def get_works(orcid_id):
-	resp = requests.get(orcid_url(orcid_id, "/orcid-works",
-                    headers={'Accept':'application/orcid+json'})
-	orcid_data = resp.json()
-	works =  orcid_data['orcid-profile']['orcid-activities']['orcid-works']['orcid-work']
-	d = {}
-	for n,item in enumerate(works):
-	    doi, tmp_d =  dic_item(item)
-	    print(n, doi)
-	    d[doi] = tmp_d
-	return d
+    resp = requests.get(orcid_url(orcid_id, "/orcid-works"),
+                        headers={'Accept': 'application/orcid+json'})
+    orcid_data = resp.json()
+    works = orcid_data['orcid-profile']['orcid-activities']['orcid-works']['orcid-work']
+    d = {}
+    for item in works:
+        doi, tmp_d = dic_item(item)
+        d[doi] = tmp_d
+    return d
 
 
 def dic_item(item):
