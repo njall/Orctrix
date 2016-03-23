@@ -37,11 +37,22 @@ def storify(orcid_id):
         cfg = yaml.load(ymlfile)
     orcid_json = orcid.get_profile(orcid_id)
     works = orcid.get_works(orcid_id)
-    profile_data = update_userinfo(orcid_id, orcid_json, cfg)
 
+    profile_data = update_userinfo(orcid_id, orcid_json, cfg)
+    works = update_works(works, cfg['articles'])
     return render_template('sample.html',
                            profile_data=profile_data,
                            articles=works)
+
+
+def update_works(works, articles):
+    print(works)
+    for work in works:
+        for article in articles:
+            if work['doi'] == articles[article]['doi']:
+                work['description'] = articles[article]['description']
+                work['image'] = articles[article]["image"]
+    return works
 
 
 def update_userinfo(orcid_id, orcid_json, cfg):
