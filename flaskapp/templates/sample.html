@@ -16,9 +16,9 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1 class="text-center">{{ user['name'] }}</h1>
-                        <img src="http://www.gravatar.com/avatar/{{ user['gravatarhash'] }}" class="img-responsive img-circle center-block" width="120px">
-                        <h3 class="text-center">{{ user['affiliation'] }}</h3>
+                        <h1 class="text-center">{{ profile_data.name }}</h1>
+                        <img src="http://www.gravatar.com/avatar/{{ profile_data.gravatarhash }}" class="img-responsive img-circle center-block" width="120px">
+                        <h3 class="text-center">{{ profile_data.affiliation }}</h3>
                     </div>
                 </div>
             </div>
@@ -52,6 +52,7 @@
             </div>
         </div>
         {% endfor %}
+    
         </div>
     </div>
 </body>
