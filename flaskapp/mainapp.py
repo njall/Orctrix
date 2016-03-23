@@ -35,7 +35,6 @@ def storify(orcid_id):
         cfg = yaml.load(ymlfile)
     orcid_json = orcid.get_profile(orcid_id)
     works = orcid.get_works(orcid_id)
-    print(works)
     profile_data = update_userinfo(orcid_id, orcid_json, cfg)
 
     return render_template('sample.html',
