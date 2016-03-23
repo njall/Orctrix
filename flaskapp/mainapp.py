@@ -40,7 +40,7 @@ def storify(orcid_id):
 
     return render_template('sample.html',
                            profile_data=profile_data,
-                           articles={})
+                           articles=works)
 
 
 def update_userinfo(orcid_id, orcid_json, cfg):

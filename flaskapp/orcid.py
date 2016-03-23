@@ -21,7 +21,7 @@ def _get_raw_json(orcid_id, action=""):
 
 
 def orcid_url(orcid_id, action=""):
-    return BASE_URL + orcid_id + "/" + action
+    return BASE_URL + orcid_id + action
 
 
 def get_profile(orcid_id):
@@ -44,10 +44,13 @@ def get_works(orcid_id):
     """ Return dictionary containing work of person with ORCID id. Dict indexed by DOI of works """
     raw_json = _get_raw_json(orcid_id, "/orcid-works")
     works = raw_json['orcid-profile']['orcid-activities']['orcid-works']['orcid-work']
-    d = {}
+    d = []
     for item in works:
         doi, tmp_d = work_item(item)
-        d[doi] = tmp_d
+        if tmp_d:
+            d.append({"doi": doi,
+                      "image": ""})
+            d[-1].update(tmp_d)
     return d
 
 def get_current_affiliation(orcid_id):

@@ -19,30 +19,6 @@ To use Orctrix, you need only gather a few pieces of information
 + A small narrative for each item you wish to include
 + The URLs of one or two images (120 x 120) for each item you wish to include
 + Your social media usernames for Facebook, Twitter and Github
-
-## Software Workflow Description
-
-User enters ORCID code --> API fetched via python --> Matched with Altmetric API data (with python!) --> JSON
-User modifies template script --> Pulls data from JSON and Script into Narrative template --> HTML
-
-## Key Features
-
-+ Narrative Creation Tutorial
-+ Automated translation of ORCID API (With Altmetric data) to HTML Template
-  + User created script 
-    + Persistent Identifier(s)
-    + Include text box? (narrative)
-    + Include media files? (visulatisatiosn)
-    + Include altmetric data (donut!)
-
-## Outputs and Uses
-
-+ Output Format
-  + HTML 
-Possible Uses
-  + Staff Page
-  + Project About Page
-  + Personal Website
   
 # Development
 
