@@ -1,6 +1,6 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, send_from_directory
 import yaml
-
+import os
 import orcid
 
 app = Flask(__name__)
@@ -53,6 +53,12 @@ def update_userinfo(orcid_id, orcid_json, cfg):
         profile_data['affiliation'] = localuserinformation['affiliation']
         profile_data['gravatarhash'] = localuserinformation['gravatarhash']
     return profile_data
+
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 if __name__ == '__main__':
     app.run(debug=True)
