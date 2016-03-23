@@ -11,9 +11,9 @@ def index():
     with open("config.yml", 'r') as ymlfile:
         cfg = yaml.load(ymlfile)
 
-    name = cfg['user']['name']
-    affiliation = cfg['user']['affiliation']
-    gravatarhash = cfg['user']['gravatarhash']
+    name = cfg['user']['0000-0002-2907-3313']['name']
+    affiliation = cfg['user']['0000-0002-2907-3313']['affiliation']
+    gravatarhash = cfg['user']['0000-0002-2907-3313']['gravatarhash']
     articles = cfg['articles']
     for article in articles:
         if 'doi' in articles[article].keys():
