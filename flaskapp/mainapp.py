@@ -31,9 +31,19 @@ def index():
 
 @app.route('/<orcid_id>')
 def storify(orcid_id):
+    with open("config.yml", 'r') as ymlfile:
+        cfg = yaml.load(ymlfile)
     orcid_json = orcid.get_json(orcid_id)
+    try:
+        localuserinformation = cfg['user'][orcid_id]
+    except KeyError:
+        localuserinformation = {}
+    profile_data = orcid_json
+    if localuserinformation:
+        profile_data['affiliation'] = localuserinformation['affiliation']
+        profile_data['gravatarhash'] = localuserinformation['gravatarhash']
     return render_template('sample.html',
-                           profile_data=orcid_json,
+                           profile_data=profile_data,
                            articles={})
 
 if __name__ == '__main__':
