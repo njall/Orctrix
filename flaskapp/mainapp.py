@@ -1,38 +1,33 @@
-from flask import Flask, render_template, send_from_directory
+from flask import Flask, render_template, send_from_directory, redirect, url_for
+from flask.ext.wtf import Form
+from wtforms import StringField, SubmitField
+from wtforms.validators import Required
 import yaml
 import os
 import orcid
 import re
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'hard to guess string'
+
+class ORCIDForm(Form):
+    orcid = StringField('Enter ORCID?', validators=[Required()])
+    submit = SubmitField('Submit')
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    with open("config.yml", 'r') as ymlfile:
-        cfg = yaml.load(ymlfile)
-
-    name = cfg['user']['0000-0002-2907-3313']['name']
-    affiliation = cfg['user']['0000-0002-2907-3313']['affiliation']
-    gravatarhash = cfg['user']['0000-0002-2907-3313']['gravatarhash']
-    articles = cfg['articles']
-    for article in articles:
-        if 'doi' in articles[article].keys():
-            articles[article]['doiurl'] = "http://dx.doi.org/" + \
-                articles[article]['doi']
-        else:
-            articles[article]['doiurl'] = None
-    return render_template('sample.html',
-                           profile_data={
-                           "user": cfg['user']['0000-0002-2907-3313'],
-                           "name": name,
-                           "affiliation": affiliation,
-                           "gravatarhash": gravatarhash},
-                           articles=articles)
+    myorcid = None
+    form = ORCIDForm()
+    if form.validate_on_submit():
+        myorcid = form.orcid.data
+        form.orcid.orcid = ''
+        return redirect(myorcid)
+    return render_template('new.html', form=form, myorcid=myorcid)
 
 @app.route('/<orcid_id>')
 def storify(orcid_id):
-    if len(orcid_id) is not 23:
+    if len(orcid_id) is not 19:
       return render_template('feedback.html',
                                feedback={
                                "title": "Sorry page can't be created:",
