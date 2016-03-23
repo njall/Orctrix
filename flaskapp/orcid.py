@@ -49,7 +49,7 @@ def get_works(orcid_id):
         d[doi] = tmp_d
     return d
 
-def get_current_affiliation(orcid_id)
+def get_current_affiliation(orcid_id):
     #raw_json = _get_raw_json(orcid_id, "orcid-employment")
     string = "I am from the university of life mate"
     return string
@@ -63,5 +63,3 @@ def work_item(item):
         return doi, dobj,
     else:
         return None, None
-
-
