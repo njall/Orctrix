@@ -24,7 +24,10 @@ def get_json(orcid_id):
 
     # TODO Add information
     json = {
-            "name": raw_json["orcid-profile"]["orcid-bio"]["personal-details"]["credit-name"]["value"],
+            "given_names":
+            raw_json.get("orcid-profile").get("orcid-bio").get("personal-details").get("given-names").get("value"),
+            "family_name":
+            raw_json.get("orcid-profile").get("orcid-bio").get("personal-details").get("family-name").get("value"),
             "affiliation": None,
             "summary": None,
             "doiurl": None,
