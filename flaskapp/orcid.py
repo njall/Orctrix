@@ -30,7 +30,7 @@ def get_profile(orcid_id):
 
     # TODO Add information
     profile = {}
-    profile['given_name'] = raw_json.get("orcid-profile").get("orcid-bio").get("personal-details").get("given-names").get("value")
+    profile['given_names'] = raw_json.get("orcid-profile").get("orcid-bio").get("personal-details").get("given-names").get("value")
     profile['family_name'] = raw_json.get("orcid-profile").get("orcid-bio").get("personal-details").get("family-name").get("value")
     profile['email'] = raw_json.get("orcid-profile").get("orcid-bio").get("contact-details").get("email")[0].get("value").lower().strip()
     profile['affiliation'] = get_current_affiliation(orcid_id)
