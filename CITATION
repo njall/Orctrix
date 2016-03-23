@@ -1,0 +1,5 @@
+Please cite Orctrix using:
+
+Beals et al.,2016, Orctrix, Collaborations Workshop Hackathon, Edinburgh, 22-23 March 2016, https://github.com/njall/Orctrix
+
+@misc{ Beals16, author={Melody Beals, Niall Beard, Heather Ford, Olivia Guest, Benjamin Laken, Jens Nielson, Raniere Silva}, title={Orctrix project}, year={2016}, note={Team Orctrix hackathon project, Collaborations Workshop 2016, Edinburgh on 21-23 March 2016} ,url={https://github.com/njall/Orctrix}}
