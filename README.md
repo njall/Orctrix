@@ -12,9 +12,13 @@ By wrapping your citations in narrative text, you can explore aspects of your wo
 
 ## Requirements
 
-+ ORCID
-+ Research outputs with DOIs
-+ URLs for external media components (imgur, youtube)
+To use Orctrix, you need only gather a few pieces of information
+
++ Your [ORCID&#174; iD](http://www.orchid.org)
++ Your institutional affiliation
++ A small narrative for each item you wish to include
++ The URLs of one or two images (120 x 120) for each item you wish to include
++ Your social media usernames for Facebook, Twitter and Github
 
 ## Software Workflow Description
 
