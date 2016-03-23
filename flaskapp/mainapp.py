@@ -16,12 +16,10 @@ def index():
     title = article['title']
     summary = article['summary']
     return render_template('sample.html',
-                           name=name,
-                           affiliation=affiliation,
+                           user=cfg['user'],
                            summary=summary,
                            doiurl=doiurl,
-                           title=title,
-                           gravatarhash=gravatarhash)
+                           title=title)
 
 if __name__ == '__main__':
     app.run(debug=True)
