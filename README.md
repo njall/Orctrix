@@ -1,5 +1,8 @@
 # Orctrix
 
+![Orctrix](https://github.com/njall/Orctrix/blob/master/resources/orctrix_logo.png)
+
+
 *Creating altmetric-informed narratives of your research*
 
 ## Purpose
