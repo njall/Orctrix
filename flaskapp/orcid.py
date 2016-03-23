@@ -16,7 +16,6 @@ def _get_raw_json(orcid_id, action=""):
     logging.info(url)
     resp = requests.get(url,
                         headers={'Accept':'application/orcid+json'})
-
     return resp.json()
 
 
@@ -73,10 +72,17 @@ def get_current_affiliation(orcid_id):
     
 def work_item(item):
     dobj={}
-    if item['work-external-identifiers']:
+    if item['work-external-identifiers'] and item['work-citation']:
         doi = item['work-external-identifiers']['work-external-identifier'][0]['work-external-identifier-id']['value']
-        dobj['cite'] = item['work-citation']
-        dobj['url'] = item['url']
+        dobj['cite'] = item['work-citation']['citation']
+        if item['url']:
+            dobj['url'] = item['url'].get("value")
+        else:
+            dobj['url'] = "Not available"
+        dobj['title'] = item['work-title']['title']['value']
+        dobj['subtitle'] = item.get('work-title').get("subtitle")
+        dobj['description'] = item.get('short-description')
+        #dobj['type'] = item['type']
         return doi, dobj,
     else:
         return None, None
