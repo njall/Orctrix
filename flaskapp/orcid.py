@@ -84,10 +84,9 @@ def get_works(orcid_id):
                     m = re.search('title\s?=\s?{(.+)}', tmp_d.get("cite").get("citation"))
                     tmp_d["title"] = m.group(1)
                 else:
-                    continue
+                    pass
 
                 tmp_d["box_type"] = box_type
-                print(tmp_d)
 
                 d.append(tmp_d)
     return d
