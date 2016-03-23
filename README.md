@@ -61,8 +61,14 @@ You can load the environment with
 $ source ./bin/activate
 ~~~
 
-# Installation
+Install requirements:
 
 ~~~
 $ python3 -m pip install -r requeriments.txt
+~~~
+
+Install Orctrix:
+
+~~~
+$ python3 setup.py develop
 ~~~
