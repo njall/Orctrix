@@ -3,7 +3,8 @@ API wrapper to Orcid.
 """
 import requests
 import json
-import loggingimport hashlib
+import logging
+import hashlib
 
 logging.basicConfig(level=logging.DEBUG)
 
