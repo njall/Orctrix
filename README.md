@@ -4,10 +4,7 @@
 
 ## Purpose
 
-+ Holistic Portfolio-style presentation of work
-  + Illustrate research and career trajectories
-+ Provide narrative or visual context for quantitiave impact data
-  + Show connection between aspects of your work
+Orctrix allows researchers to create rich narratives of their career and research trajectories by surrounding your publication and citation data in descriptive and visual context.
 
 ### Benefits
 
