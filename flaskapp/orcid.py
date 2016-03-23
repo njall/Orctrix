@@ -21,7 +21,7 @@ def _get_raw_json(orcid_id, action=""):
 
 
 def orcid_url(orcid_id, action=""):
-    return BASE_URL + orcid_id + "/" + action
+    return BASE_URL + orcid_id + action
 
 
 def get_profile(orcid_id):
