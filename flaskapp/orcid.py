@@ -25,7 +25,11 @@ def get_json(orcid_id):
     # TODO Add information
     json = {
             "name": raw_json["orcid-profile"]["orcid-bio"]["personal-details"]["credit-name"]["value"],
-            "affiliation": None
+            "affiliation": None,
+            "summary": None,
+            "doiurl": None,
+            "title": None,
+            "gravatarhash": None,
             }
 
     return json

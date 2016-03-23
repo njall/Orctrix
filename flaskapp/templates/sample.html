@@ -16,9 +16,9 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1 class="text-center">{{ user['name'] }}</h1>
-                        <img src="http://www.gravatar.com/avatar/{{ user['gravatarhash'] }}" class="img-responsive img-circle center-block" width="120px">
-                        <h3 class="text-center">{{ user['affiliation'] }}</h3>
+                        <h1 class="text-center">{{ profile_data.name }}</h1>
+                        <img src="http://www.gravatar.com/avatar/{{ profile_data.gravatarhash }}" class="img-responsive img-circle center-block" width="120px">
+                        <h3 class="text-center">{{ profile_data.affiliation }}</h3>
                     </div>
                 </div>
             </div>
@@ -28,7 +28,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <h2 class="text-center">{{ title }}</h2>
+                            <h2 class="text-center">{{ profile_data.title }}</h2>
                         </div>
                     </div>
                 </div>
@@ -40,11 +40,11 @@
                             <img src="https://c2.staticflickr.com/8/7503/15795863409_f8a8bd3bd9_z.jpg" class="img-responsive img-circle center-block" width="120px">
                         </div>
                         <div class="col-md-8">
-                            <p class="lead text-default">{{ summary }}</p>
+                            <p class="lead text-default">{{ profile_data.summary }}</p>
                             <p class="lead text-default">This article has been cited by...</p>
                         </div>
                         <div class="col-md-2">
-                            <div data-badge-type="medium-donut" data-doi="{{ doiurl }}" data-hide-no-mentions="true" class="altmetric-embed text-center img-responsive"></div>
+                            <div data-badge-type="medium-donut" data-doi="{{ profile_data.doiurl }}" data-hide-no-mentions="true" class="altmetric-embed text-center img-responsive"></div>
                         </div>
                     </div>
                 </div>
