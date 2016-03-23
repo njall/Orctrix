@@ -11,15 +11,13 @@ def index():
     name = cfg['user']['name']
     affiliation = cfg['user']['affiliation']
     gravatarhash = cfg['user']['gravatarhash']
-    article = cfg['articles'][1]
-    doiurl = "http://dx.doi.org/" + article['doi']
-    title = article['title']
-    summary = article['summary']
+    articles = cfg['articles']
+    for article in articles:
+        articles[article]['doiurl'] = "http://dx.doi.org/" + \
+            articles[article]['doi']
     return render_template('sample.html',
                            user=cfg['user'],
-                           summary=summary,
-                           doiurl=doiurl,
-                           title=title)
+                           articles=articles)
 
 if __name__ == '__main__':
     app.run(debug=True)
