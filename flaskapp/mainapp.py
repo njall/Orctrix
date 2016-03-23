@@ -39,6 +39,10 @@ def storify(orcid_id):
     works = orcid.get_works(orcid_id)
 
     profile_data = update_userinfo(orcid_id, orcid_json, cfg)
+    if 'articles' in cfg.keys():
+        articles = cfg['articles']
+    else:
+        articles = {}
     works = update_works(works, cfg['articles'])
     return render_template('sample.html',
                            profile_data=profile_data,
@@ -46,7 +50,6 @@ def storify(orcid_id):
 
 
 def update_works(works, articles):
-    print(works)
     for work in works:
         for article in articles:
             if work['doi'] == articles[article]['doi']:
