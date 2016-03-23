@@ -41,7 +41,7 @@ def get_profile(orcid_id):
 
 def get_works(orcid_id):
     """ Return dictionary containing work of person with ORCID id. Dict indexed by DOI of works """
-    raw_json = _get_raw_json(orcid_id, "orcid-works")
+    raw_json = _get_raw_json(orcid_id, "/orcid-works")
     works = raw_json['orcid-profile']['orcid-activities']['orcid-works']['orcid-work']
     d = {}
     for item in works:
