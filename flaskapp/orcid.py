@@ -34,7 +34,7 @@ def get_profile(orcid_id):
     profile['email'] = auth_raw.get("orcid-profile").get("orcid-bio").get("contact-details").get("email")[0].get("value").lower().strip()
     profile['affiliation'] = get_current_affiliation(orcid_id)
     profile['bio'] = auth_raw.get('orcid-profile').get('orcid-bio').get('biography').get('value')
-    profile['gravatarhash'] = hashlib.md5(email.encode('utf-8')).hexdigest()
+    profile['gravatarhash'] = hashlib.md5(profile['email'].encode('utf-8')).hexdigest()
 
     return profile
 
