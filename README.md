@@ -64,7 +64,8 @@ $ source ./bin/activate
 Run
 
 ~~~
-$ python3 Orctrix/main.py ORCID_ID
+$ cd flaskapp/
+$ python mainapp.py
 ~~~
 
 ## Profiles to test
