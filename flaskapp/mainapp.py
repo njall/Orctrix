@@ -16,8 +16,11 @@ def index():
     gravatarhash = cfg['user']['gravatarhash']
     articles = cfg['articles']
     for article in articles:
-        articles[article]['doiurl'] = "http://dx.doi.org/" + \
-            articles[article]['doi']
+        if 'doi' in articles[article].keys():
+            articles[article]['doiurl'] = "http://dx.doi.org/" + \
+                articles[article]['doi']
+        else:
+            articles[article]['doiurl'] = None
     return render_template('sample.html',
                            profile_data={
                            "user": cfg['user'],
