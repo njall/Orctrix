@@ -33,7 +33,7 @@ def index():
 def storify(orcid_id):
     with open("config.yml", 'r') as ymlfile:
         cfg = yaml.load(ymlfile)
-    orcid_json = orcid.get_json(orcid_id)
+    orcid_json = orcid.get_profile(orcid_id)
     works = orcid.get_works(orcid_id)
     print(works)
     profile_data = update_userinfo(orcid_id, orcid_json, cfg)
