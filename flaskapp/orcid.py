@@ -3,8 +3,8 @@ API wrapper to Orcid.
 """
 import requests
 import json
+import loggingimport hashlib
 
-import logging
 logging.basicConfig(level=logging.DEBUG)
 
 BASE_URL = "https://pub.orcid.org/"
@@ -28,9 +28,13 @@ def get_profile(orcid_id):
 
     # TODO Add information
     profile = {}
-    profile['name'] = raw_json.get("orcid-profile").get("orcid-bio").get("personal-details").get("given-names").get("value") + " " +
-                      raw_json.get("orcid-profile").get("orcid-bio").get("personal-details").get("family-name").get("value")
-    
+    profile['given_name'] = raw_json.get("orcid-profile").get("orcid-bio").get("personal-details").get("given-names").get("value")
+    profile['family_name'] = raw_json.get("orcid-profile").get("orcid-bio").get("personal-details").get("family-name").get("value")
+    profile['email'] = auth_raw.get("orcid-profile").get("orcid-bio").get("contact-details").get("email")[0].get("value").lower().strip()
+    profile['affiliation'] = get_current_affiliation(orcid_id)
+    profile['bio'] = auth_raw.get('orcid-profile').get('orcid-bio').get('biography').get('value')
+    profile['gravatarhash'] = hashlib.md5(email.encode('utf-8')).hexdigest()
+
     return profile
 
 
@@ -44,7 +48,11 @@ def get_works(orcid_id):
         d[doi] = tmp_d
     return d
 
-
+def get_current_affiliation(orcid_id)
+    #raw_json = _get_raw_json(orcid_id, "orcid-employment")
+    string = "I am from the university of life mate"
+    return string
+    
 def work_item(item):
     dobj={}
     if item['work-external-identifiers']:
@@ -54,7 +62,5 @@ def work_item(item):
         return doi, dobj,
     else:
         return None, None
-
-def profile_item(item):
 
 
