@@ -19,7 +19,11 @@ To use Orctrix, you need only gather a few pieces of information
 + A small narrative for each item you wish to include
 + The URLs of one or two images (120 x 120) for each item you wish to include
 + Your social media usernames for Facebook, Twitter and Github
-  
+
+## Output
+
+Once processed, you will be provided a [Bootstrap](http://getbootstrap.com/)-powered webpage that you may include on your personal, insitutional or project website&mdash;wherever a narrative account of your work is needed!
+
 # Development
 
 Please use virtualen.

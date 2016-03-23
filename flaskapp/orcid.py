@@ -16,7 +16,6 @@ def _get_raw_json(orcid_id, action=""):
     logging.info(url)
     resp = requests.get(url,
                         headers={'Accept':'application/orcid+json'})
-
     return resp.json()
 
 
@@ -30,11 +29,24 @@ def get_profile(orcid_id):
 
     # TODO Add information
     profile = {}
-    profile['given_name'] = raw_json.get("orcid-profile").get("orcid-bio").get("personal-details").get("given-names").get("value")
-    profile['family_name'] = raw_json.get("orcid-profile").get("orcid-bio").get("personal-details").get("family-name").get("value")
-    profile['email'] = raw_json.get("orcid-profile").get("orcid-bio").get("contact-details").get("email")[0].get("value").lower().strip()
+    for name in ('credit_name', 'given_names', 'family_name'):
+        try:
+            profile[name] = raw_json.get("orcid-profile").get("orcid-bio").get("personal-details").get(name.replace('_', '-')).get("value")
+        except:
+            profile[name] = None
+    if profile['credit_name']:
+        profile['name'] = profile['credit_name']
+    else:
+        profile['name'] = profile['given_names'] + ' ' + profile['family_name']
+    try:
+        profile['email'] = raw_json.get("orcid-profile").get("orcid-bio").get("contact-details").get("email")[0].get("value").lower().strip()
+    except:
+        profile['email']
     profile['affiliation'] = get_current_affiliation(orcid_id)
-    profile['bio'] = raw_json.get('orcid-profile').get('orcid-bio').get('biography').get('value')
+    try:
+        profile['bio'] = raw_json.get('orcid-profile').get('orcid-bio').get('biography').get('value')
+    except:
+        profile['bio'] = None
     profile['gravatarhash'] = hashlib.md5(profile['email'].encode('utf-8')).hexdigest()
 
     return profile
@@ -60,10 +72,17 @@ def get_current_affiliation(orcid_id):
     
 def work_item(item):
     dobj={}
-    if item['work-external-identifiers']:
+    if item['work-external-identifiers'] and item['work-citation']:
         doi = item['work-external-identifiers']['work-external-identifier'][0]['work-external-identifier-id']['value']
-        dobj['cite'] = item['work-citation']
-        dobj['url'] = item['url']
+        dobj['cite'] = item['work-citation']['citation']
+        if item['url']:
+            dobj['url'] = item['url'].get("value")
+        else:
+            dobj['url'] = "Not available"
+        dobj['title'] = item['work-title']['title']['value']
+        dobj['subtitle'] = item.get('work-title').get("subtitle")
+        dobj['description'] = item.get('short-description')
+        #dobj['type'] = item['type']
         return doi, dobj,
     else:
         return None, None
