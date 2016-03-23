@@ -33,7 +33,7 @@ def index():
 @app.route('/<orcid_id>')
 def storify(orcid_id):
     if len(orcid_id) is not 23:
-      return render_template('sample.html',
+      return render_template('feedback.html',
                                feedback={
                                "title": "Sorry page can't be created:",
                                "details": 'ORCID provided is not correct length'}) 
