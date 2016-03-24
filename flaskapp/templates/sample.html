@@ -1,36 +1,67 @@
 <html>
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <script type='text/javascript' src='https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js'></script>
+      <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+      <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+      <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+      <link href="css/style.css" rel="stylesheet" type="text/css">
+      <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
+   </head>
+   
+<!-- Identity Information -->
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script type='text/javascript' src='https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js'></script>
-    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
-</head>
-
-<body>
-    <div class="panel panel-primary" style="margin-left: 15px; margin-right: 15px; margin-top:25px;">
-        <div class="panel-heading">
+   <body>
+      <div class="panel panel-primary" style="margin-left: 15px; margin-right: 15px; margin-top:15px;">
+         <div class="panel-heading">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1 class="text-center">{{ profile_data.name }}</h1>
-                        <img src="http://www.gravatar.com/avatar/{{ profile_data.gravatarhash }}" class="img-responsive img-circle center-block" width="120px">
-                        <h3 class="text-center">{{ profile_data.affiliation }}</h3>
-                    </div>
-                </div>
+               <div class="row">
+                  <div class="col-md-12">
+                     <h1 class="text-center">{{ profile_data.given_names }} {{ profile_data.family_name }}</h1>
+                     <img src="http://www.gravatar.com/avatar/{{ profile_data.gravatarhash }}" class="img-responsive img-circle center-block" width="120px">
+                     <h3 class="text-center">{{ profile_data.affiliation }}</h3>
+                     <center><a href="#" class="btn btn-social-icon btn-lg btn-twitter"><i class="fa fa-twitter"></i></a><a href="#" class="btn btn-social-icon btn-lg btn-facebook"><i class="fa fa-facebook"></i></a><a href="#" class="btn btn-social-icon btn-lg btn-github"><i class="fa fa-github"></i></a></center>
+                  </div>
+               </div>
             </div>
-        </div>
-        {% for article in articles %}
-        {% if article.box_type == "full" %}
+         </div>
+		</div> 
+		
+<!-- Biography -->
+		 
+         <div class="panel panel-default" style="margin-left: 15px; margin-right: 15px; ">
+            <div class="panel-heading">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <h2 class="text-center">About Me</h2>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="panel-body panel-default">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-md-14">
+                        <p class="lead text-default"></p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+		</div>	
+
+{% for article in articles %}
+{% if article.box_type == "full" %}
+		
+<!-- Template 1: Full Altmetric Data -->
+		 
          <div class="panel panel-default" style="margin-left: 15px; margin-right: 15px; margin-top:15px;margin-top: -25px;"">
             <div class="panel-heading">
                <div class="container">
                   <div class="row">
                      <div class="col-md-12">
-                         <h2 class="text-center">{{ article['title'] }}</h2>
+                        <h2 class="text-center">{{ article['title'] }}</h2>
                      </div>
                   </div>
                </div>
@@ -39,23 +70,27 @@
                <div class="container">
                   <div class="row">
                      <div class="col-md-8">
-                         <p class="lead text-default">{{ article['description'] }}</p>
+                        <p class="lead text-default">{{ article['description'] }}</p>
                      </div>
                      <div class="col-md-4">
-                         <div data-badge-type="medium-donut" data-doi="https://dx.doi.org/{{ article['doi'] }}" data-badge-details='right' class="altmetric-embed text-center img-responsive"></div>
+                        <div class='altmetric-embed' data-badge-type='medium-donut' data-badge-details='right' data-doi='{{ article['doi'] }}'></div>
                      </div>
                   </div>
                </div>
             </div>
          </div>
-        {% endif %}
+
+		{% endif %}
         {% if article.box_type == "images" %}
+		
+<!-- Template 2: Two Images -->
+		 
          <div class="panel panel-default" style="margin-left: 15px; margin-right: 15px; margin-top: -25px;">
             <div class="panel-heading">
                <div class="container">
                   <div class="row">
                      <div class="col-md-12">
-                            <h2 class="text-center">{{ article['title'] }}</h2>
+                        <h2 class="text-center">{{ article['title'] }}</h2>
                      </div>
                   </div>
                </div>
@@ -64,51 +99,69 @@
                <div class="container">
                   <div class="row">
                      <div class="col-md-2">
-                        <a href="" targe="_blank"><img src="" class="img-responsive img-circle center-block" width="120px"></a>
+                        <a href="{{ article["image"] }}" targe="_blank"><img src="{{ article["image"] }}" class="img-responsive img-circle center-block" width="120px"></a>
                      </div>
                      <div class="col-md-8">
-                            <p class="lead text-default">{{ article['description'] }}</p>
+                        <p class="lead text-default">{{ article['description'] }}</p>
                      </div>
                      <div class="col-md-2">
-                        <a href="" targe="_blank"><img src="" class="img-responsive img-circle center-block" width="120px"></a>
+                        <a href="{{ article["image"] }}" targe="_blank"><img src="{{ article["image"] }}" class="img-responsive img-circle center-block" width="120px"></a>
                      </div>
                   </div>
                </div>
             </div>
          </div>
-        {% endif %}
-        {% if article.box_type == "donut" %}
-        <div class="panel panel-default" style="margin-left: 15px; margin-right: 15px; margin-top:15px;">
+
+{% endif %}
+{% if article.box_type == "donut" %}
+		 
+<!-- Template 3: Donut and Image -->
+		 
+         <div class="panel panel-default" style="margin-left: 15px; margin-right: 15px; margin-top: -25px;">
             <div class="panel-heading">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h2 class="text-center">{{ article['title'] }}</h2>
-                        </div>
-                    </div>
-                </div>
+               <div class="container">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <h2 class="text-center">{{ article['title'] }}</h2>
+                     </div>
+                  </div>
+               </div>
             </div>
             <div class="panel-body panel-default">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-2">
-                            <img src="{{ article["image"] }}" class="img-responsive img-circle center-block" width="120px">
-                        </div>
-                        <div class="col-md-8">
-                            <p class="lead text-default">{{ article['description'] }}</p>
-                        </div>
-                        <div class="col-md-2">
-                            <div data-badge-type="medium-donut" data-doi="https://dx.doi.org/{{ article['doi'] }}" data-hide-no-mentions="true" class="altmetric-embed text-center img-responsive"></div>
-                        </div>
-                    </div>
-                </div>
+               <div class="container">
+                  <div class="row">
+                     <div class="col-md-2">
+                        <div data-badge-type="medium-donut" data-doi="http://dx.doi.org/10.1080/13555502.2013.865977" data-hide-no-mentions="true" class="altmetric-embed text-center img-responsive"></div>
+                     </div>
+                     <div class="col-md-8">
+                        <p class="lead text-default">{{ article['description'] }}</p>
+                     </div>
+                     <div class="col-md-2">
+                        <a href="{{ article["image"] }}" targe="_blank"><img src="{{ article["image"] }}" class="img-responsive img-circle center-block" width="120px">
+                     </div>
+                  </div>
+               </div>
             </div>
-        </div>
-        {% endif %}
-        {% endfor %}
-    
-        </div>
-    </div>
-</body>
-
+		</div>
+		
+{% endif %}
+{% endfor %}			
+			
+			<div class="panel-footer panel-default">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-md-2">
+                     </div>
+                     <div class="col-md-8">
+                        <p class="lead text-default" style="text-align:center;"><a style="color:999999;" href="https://github.com/njall/Orctrix/">Created by Ortrix.</a></p>
+                     </div>
+                     <div class="col-md-2">
+                     </div>
+                  </div>
+               </div>
+            </div>
+			
+         </div>
+      </div>
+   </body>
 </html>
